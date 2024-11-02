@@ -76,10 +76,10 @@ class PegawaiController extends Controller
 
     public function show($id)
     {
-        $pegawais = PegawaiModel::with('pendidikan')->findOrFail($id);
-        $pendidikans = PendidikanModel::all();
-        $jabatans = JabatanModel::all();
+        $pegawais = PegawaiModel::with('pendidikan', 'jabatan')->findOrFail($id);
+        $pendidikan = PendidikanModel::all();
+        $jabatan = JabatanModel::all();
 
-        return view('admin.master.pegawai.show', compact('pendidikans', 'pegawais', 'jabatans'));
+        return view('admin.master.pegawai.show', compact('pendidikan', 'pegawais', 'jabatan'));
     }
 }

@@ -1,77 +1,88 @@
-@extends('layouts/blankLayout')
+<!DOCTYPE html>
+<html lang="en">
 
-@section('title', 'Login Basic - Pages')
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Skydash Admin</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="{{ asset('assets/vendors/feather/feather.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendors/ti-icons/css/themify-icons.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendors/css/vendor.bundle.base.css') }}">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="{{ asset('assets/css/vertical-layout-light/style.css') }}">
+    <!-- endinject -->
+    <link rel="shortcut icon" href="{{ asset('assets/images/favicon.png') }}" />
+</head>
 
-@section('page-style')
-<!-- Page -->
-<link rel="stylesheet" href="{{asset('assets/vendor/css/pages/page-auth.css')}}">
-@endsection
-
-@section('content')
-<div class="position-relative">
-  <div class="authentication-wrapper authentication-basic container-p-y">
-    <div class="authentication-inner py-4">
-
-      <!-- Login -->
-      <div class="card p-2">
-        <!-- Logo -->
-        <div class="app-brand justify-content-center mt-5">
-          <a href="{{url('/')}}" class="app-brand-link gap-2">
-            <span class="app-brand-logo demo">@include('_partials.macros',["height"=>20,"withbg"=>'fill: #fff;'])</span>
-            <span class="app-brand-text demo text-heading fw-semibold">{{config('variables.templateName')}}</span>
-          </a>
-        </div>
-        <!-- /Logo -->
-
-        <div class="card-body mt-2">
-          <h4 class="mb-2">Welcome to {{config('variables.templateName')}}! 👋</h4>
-          <p class="mb-4">Please sign-in to your account and start the adventure</p>
-
-          <form id="formAuthentication" class="mb-3" action="{{url('/')}}" method="GET">
-            <div class="form-floating form-floating-outline mb-3">
-              <input type="text" class="form-control" id="email" name="email-username" placeholder="Enter your email or username" autofocus>
-              <label for="email">Email or Username</label>
-            </div>
-            <div class="mb-3">
-              <div class="form-password-toggle">
-                <div class="input-group input-group-merge">
-                  <div class="form-floating form-floating-outline">
-                    <input type="password" id="password" class="form-control" name="password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password" />
-                    <label for="password">Password</label>
-                  </div>
-                  <span class="input-group-text cursor-pointer"><i class="mdi mdi-eye-off-outline"></i></span>
+<body>
+    <div class="container-scroller">
+        <div class="container-fluid page-body-wrapper full-page-wrapper">
+            <div class="content-wrapper d-flex align-items-center auth px-0">
+                <div class="row w-100 mx-0">
+                    <div class="col-lg-4 mx-auto">
+                        <div class="auth-form-light text-left py-5 px-4 px-sm-5">
+                            <div class="brand-logo">
+                                <img src="{{ asset('assets/images/logo.svg') }}" alt="logo">
+                            </div>
+                            <h4>Hello! let's get started</h4>
+                            <h6 class="font-weight-light">Sign in to continue.</h6>
+                            <form class="pt-3">
+                                <div class="form-group">
+                                    <input type="email" class="form-control form-control-lg" id="exampleInputEmail1"
+                                        placeholder="Username">
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" class="form-control form-control-lg"
+                                        id="exampleInputPassword1" placeholder="Password">
+                                </div>
+                                <div class="mt-3">
+                                    <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"
+                                        href="{{ asset('assets/index.html') }}">SIGN IN</a>
+                                </div>
+                                <div class="my-2 d-flex justify-content-between align-items-center">
+                                    <div class="form-check">
+                                        <label class="form-check-label text-muted">
+                                            <input type="checkbox" class="form-check-input">
+                                            Keep me signed in
+                                        </label>
+                                    </div>
+                                    <a href="#" class="auth-link text-black">Forgot password?</a>
+                                </div>
+                                <div class="mb-2">
+                                    <button type="button" class="btn btn-block btn-facebook auth-form-btn">
+                                        <i class="ti-facebook mr-2"></i>Connect using facebook
+                                    </button>
+                                </div>
+                                <div class="text-center mt-4 font-weight-light">
+                                    Don't have an account? <a href="register.html" class="text-primary">Create</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
-            <div class="mb-3 d-flex justify-content-between">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="remember-me">
-                <label class="form-check-label" for="remember-me">
-                  Remember Me
-                </label>
-              </div>
-              <a href="{{url('auth/forgot-password-basic')}}" class="float-end mb-1">
-                <span>Forgot Password?</span>
-              </a>
-            </div>
-            <div class="mb-3">
-              <button class="btn btn-primary d-grid w-100" type="submit">Sign in</button>
-            </div>
-          </form>
-
-          <p class="text-center">
-            <span>New on our platform?</span>
-            <a href="{{url('auth/register-basic')}}">
-              <span>Create an account</span>
-            </a>
-          </p>
+            <!-- content-wrapper ends -->
         </div>
-      </div>
-      <!-- /Login -->
-      <img src="{{asset('assets/img/illustrations/tree-3.png')}}" alt="auth-tree" class="authentication-image-object-left d-none d-lg-block">
-      <img src="{{asset('assets/img/illustrations/auth-basic-mask-light.png')}}" class="authentication-image d-none d-lg-block" alt="triangle-bg">
-      <img src="{{asset('assets/img/illustrations/tree.png')}}" alt="auth-tree" class="authentication-image-object-right d-none d-lg-block">
+        <!-- page-body-wrapper ends -->
     </div>
-  </div>
-</div>
-@endsection
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="{{ asset('assets/vendors/js/vendor.bundle.base.js') }}"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="{{ asset('assets/js/off-canvas.js') }}"></script>
+    <script src="{{ asset('assets/js/hoverable-collapse.js') }}"></script>
+    <script src="{{ asset('assets/js/template.js') }}"></script>
+    <script src="{{ asset('assets/js/settings.js') }}"></script>
+    <script src="{{ asset('assets/js/todolist.js') }}"></script>
+    <!-- endinject -->
+</body>
+
+</html>

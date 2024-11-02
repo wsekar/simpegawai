@@ -33,8 +33,8 @@
                                     <td style="color:  var(--bs-primary); width:15%;"><strong>Pendidikan Terakhir</strong>
                                     </td>
                                     <td style="width:35%;">
-                                        @isset($pgw->pendidikan)
-                                            {{ $pgw->pendidikan->pendidikan }}
+                                        @isset($pegawais->pendidikan->pendidikan)
+                                            {{ $pegawais->pendidikan->pendidikan }}
                                         @else
                                         @endisset
                                     </td>

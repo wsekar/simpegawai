@@ -1,4 +1,6 @@
 <?php
+
+use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\PendidikanController;
 use App\Http\Controllers\JabatanController;
 use App\Http\Controllers\PegawaiController;
@@ -10,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 //     return view('dashboard');
 // });
 
+Route::get('/', [AuthController::class, 'login'])->name('login');
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('layouts.admin.dashboard');
 
 Route::get('/pendidikan', [PendidikanController::class, 'index'])->name('admin.master.pendidikan.index');

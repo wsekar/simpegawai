@@ -7,7 +7,27 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false"
+            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+              <i class="icon-layout menu-icon"></i>
+              <span class="menu-title">Data Master</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="ui-basic">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item">
+                    <a class="nav-link" href="/pendidikan">Pendidikan</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/jabatan">Jabatan</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/pegawai">Pegawai</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+        {{-- <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="" aria-expanded="false"
                 aria-controls="ui-basic">
                 <i class="icon-layout menu-icon"></i>
                 <span class="menu-title">Data Master</span>
@@ -26,7 +46,7 @@
                     </li>
                 </ul>
             </div>
-        </li>
+        </li> --}}
         <li class="nav-item">
             <a class="nav-link" href="/usia-pensiun">
                 <i class="icon-paper menu-icon"></i>

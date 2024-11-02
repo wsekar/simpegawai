@@ -43,13 +43,12 @@
                         <div class="form-group">
                             <label for="alamat_pegawai">Alamat</label>
                             <input type="text" class="form-control" id="alamat_pegawai" name="alamat_pegawai"
-                                placeholder="Masukkan Alamat" value="{{ old('nip', $pegawais->nip) }}">
+                                placeholder="Masukkan Alamat" value="{{ old('nip', $pegawais->alamat_pegawai) }}">
                         </div>
                         <div class="form-group">
                             <label for="pendidikan_id">Pendidikan Terakhir</label>
-                            <select name="pendidikan_id" id="pendidikan_id" class="form-select"
-                                id="exampleFormControlSelect2">
-                                <option value="">Pilih Tahun</option>
+                            <select name="pendidikan_id" id="pendidikan_id" class="form-select js-example-basic-single">
+                                <option value="">Pilih Pendidikan Terakhir</option>
                                 @foreach ($pendidikans as $pend)
                                     <option value="{{ $pend->id }}"
                                         {{ $pegawais->pendidikan_id == $pend->id ? 'selected' : '' }}>
@@ -60,8 +59,7 @@
                         </div>
                         <div class="form-group">
                             <label for="jabatan_id">Jabatan</label>
-                            <select name="jabatan_id" id="jabatan_id" class="form-select"
-                                id="exampleFormControlSelect2">
+                            <select name="jabatan_id" id="jabatan_id" class="form-select js-example-basic-single">
                                 <option value="">Pilih Jabatan</option>
                                 @foreach ($jabatans as $jbt)
                                     <option value="{{ $jbt->id }}"

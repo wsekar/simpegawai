@@ -46,9 +46,8 @@
                         <div class="form-group">
                             <label for="jabatan_id">Pendidikan Terakhir</label>
                             {{-- <input type="text" class="form-control" id="pendidikan_id" name="pendidikan_id" placeholder="Masukkan NIP"> --}}
-                            <select name="pendidikan_id" id="pendidikan_id" class="form-select"
-                                id="exampleFormControlSelect2">
-                                <option value="">Pilih Tahun</option>
+                            <select name="pendidikan_id" id="pendidikan_id" class="form-select js-example-basic-single">
+                                <option value="">Pilih Pendidikan Terakhir</option>
                                 @foreach ($pendidikans as $pend)
                                     <option value="{{ $pend->id }}" data-tahun="{{ $pend->pendidikan }}">
                                         {{ $pend->pendidikan }}</option>
@@ -57,8 +56,7 @@
                         </div>
                         <div class="form-group">
                             <label for="jabatan_id">Jabatan</label>
-                            <select name="jabatan_id" id="jabatan_id" class="form-select"
-                                id="exampleFormControlSelect2">
+                            <select name="jabatan_id" id="jabatan_id" class="form-select js-example-basic-single">
                                 <option value="">Pilih Jabatan</option>
                                 @foreach ($jabatans as $jbt)
                                     <option value="{{ $jbt->id }}" data-tahun="{{ $jbt->nama_jabatan }}">
@@ -66,7 +64,8 @@
                                 @endforeach
                             </select>
                         </div>
-                        <button type="submit" class="btn btn-success btn-sm"><i class="mdi mdi-content-save"></i>Submit</button>
+                        <button type="submit" class="btn btn-success btn-sm"><i
+                                class="mdi mdi-content-save"></i>Submit</button>
                         <button type="reset" class="btn btn-light btn-sm"><i class="mdi mdi-undo"></i>Cancel</button>
                     </form>
                 </div>
