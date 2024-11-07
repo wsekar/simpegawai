@@ -26,7 +26,7 @@ class PegawaiController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nip' => 'required',
+            'nik' => 'required',
             'nama_pegawai' => 'required',
             'tanggal_lahir_pegawai' => 'required',
             'alamat_pegawai' => 'required',
@@ -51,7 +51,7 @@ class PegawaiController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'nip' => 'required',
+            'nik' => 'required',
             'nama_pegawai' => 'required',
             'tanggal_lahir_pegawai' => 'required',
             'alamat_pegawai' => 'required',

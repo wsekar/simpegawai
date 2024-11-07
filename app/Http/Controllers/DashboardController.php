@@ -35,35 +35,52 @@ class DashboardController extends Controller
     // }
 
     public function index()
-{
-    // Get the first record of UsiaPensiunModel, ensuring it exists
-    $usiaPensiunModel = UsiaPensiunModel::first();
+    {
 
-    // Check if the model is null
-    if ($usiaPensiunModel) {
-        $usiaPensiun = $usiaPensiunModel->usia;
-    } else {
-        // Handle the case when there is no record found
-        $usiaPensiun = null; // Or set a default value if applicable
+        $usiaPensiunModel = UsiaPensiunModel::first();
+        if ($usiaPensiunModel) {
+            $usiaPensiun = $usiaPensiunModel->usia;
+        } else {
+            $usiaPensiun = null;
+        }
+
+        $usiaMendekatiPensiun = $usiaPensiun ? $usiaPensiun - 2 : null;
+        $waktuSaatIni = Carbon::now();
+        $pegawai = PegawaiModel::all()->filter(function ($pegawai) use ($waktuSaatIni, $usiaMendekatiPensiun, $usiaPensiun) {
+            $tanggalLahir = Carbon::parse($pegawai->tanggal_lahir_pegawai);
+            $usia = $tanggalLahir->diffInYears($waktuSaatIni);
+            return $usiaMendekatiPensiun !== null && $usia >= $usiaMendekatiPensiun && $usia < $usiaPensiun;
+        });
+
+        $laki2 = PegawaiModel::where('jenis_kelamin', 'Laki-laki')->count();
+        $perempuan = PegawaiModel::where('jenis_kelamin', 'Perempuan')->count();
+
+        return view('dashboard', compact('pegawai', 'waktuSaatIni', 'usiaPensiun', 'laki2', 'perempuan'));
     }
 
-    $usiaMendekatiPensiun = $usiaPensiun ? $usiaPensiun - 2 : null; // Check for null
+    // public function index()
+    // {
+    //     // Get the first record of UsiaPensiunModel, ensuring it exists
+    //     $usiaPensiunModel = UsiaPensiunModel::first();
+    //     $usiaPensiun = $usiaPensiunModel ? $usiaPensiunModel->usia : null;
+    //     $usiaMendekatiPensiun = $usiaPensiun ? $usiaPensiun - 2 : null;
 
-    $waktuSaatIni = Carbon::now();
+    //     $waktuSaatIni = Carbon::now();
 
-    $pegawai = PegawaiModel::all()->filter(function ($pegawai) use ($waktuSaatIni, $usiaMendekatiPensiun, $usiaPensiun) {
-        $tanggalLahir = Carbon::parse($pegawai->tanggal_lahir_pegawai);
-        $usia = $tanggalLahir->diffInYears($waktuSaatIni);
+    //     // Filter employees who are nearing retirement
+    //     $pegawai = PegawaiModel::all()->filter(function ($pegawai) use ($waktuSaatIni, $usiaMendekatiPensiun, $usiaPensiun) {
+    //         $tanggalLahir = Carbon::parse($pegawai->tanggal_lahir_pegawai);
+    //         $usia = $tanggalLahir->diffInYears($waktuSaatIni);
 
-        return $usiaMendekatiPensiun !== null && $usia >= $usiaMendekatiPensiun && $usia < $usiaPensiun;
-    });
+    //         return $usiaMendekatiPensiun !== null && $usia >= $usiaMendekatiPensiun && $usia < $usiaPensiun;
+    //     });
 
-    $counts = PegawaiModel::selectRaw('jenis_kelamin, count(*) as count')
-        ->groupBy('jenis_kelamin')
-        ->get()
-        ->pluck('count', 'jenis_kelamin');
+    //     // Count employees by gender
+    //     $counts = PegawaiModel::selectRaw('jenis_kelamin, count(*) as count')
+    //         ->groupBy('jenis_kelamin')
+    //         ->get()
+    //         ->pluck('count', 'jenis_kelamin');
 
-    return view('dashboard', compact('pegawai', 'waktuSaatIni', 'usiaPensiun', 'counts'));
-}
-
+    //     return view('dashboard', compact('pegawai', 'waktuSaatIni', 'usiaPensiun', 'counts'));
+    // }
 }

@@ -106,6 +106,7 @@ $(function() {
       'Yellow',
     ]
   };
+  
   var doughnutPieOptions = {
     responsive: true,
     animation: {
@@ -113,6 +114,8 @@ $(function() {
       animateRotate: true
     }
   };
+
+  
   var areaData = {
     labels: ["2013", "2014", "2015", "2016", "2017"],
     datasets: [{

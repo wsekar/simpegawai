@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\PendidikanController;
 use App\Http\Controllers\JabatanController;
 use App\Http\Controllers\PegawaiController;
+use App\Http\Controllers\PelatihanController;
 use App\Http\Controllers\UsiaPensiunController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
@@ -14,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [AuthController::class, 'login'])->name('login');
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('layouts.admin.dashboard');
+
 
 Route::get('/pendidikan', [PendidikanController::class, 'index'])->name('admin.master.pendidikan.index');
 Route::get('/pendidikan/create', [PendidikanController::class, 'create'])->name('pendidikan.create');
@@ -43,4 +45,12 @@ Route::post('/usia-pensiun/store', [UsiaPensiunController::class, 'store'])->nam
 Route::get('/usia-pensiun/edit/{id}', [UsiaPensiunController::class, 'edit'])->name('usia pensiun.edit');
 Route::put('/usia-pensiun/update/{id}', [UsiaPensiunController::class, 'update'])->name('usia pensiun.update');
 Route::delete('/usia-pensiun/delete/{id}', [UsiaPensiunController::class, 'destroy'])->name('usia pensiun.destroy');
+
+Route::get('/pegawai/pelatihan', [PelatihanController::class, 'index'])->name('admin.master.pegawai.pelatihan.index');
+Route::get('/pegawai/pelatihan/create', [PelatihanController::class, 'create'])->name('pegawai.pelatihan.create');
+Route::post('/pegawai/pelatihan/store', [PelatihanController::class, 'store'])->name('pegawai.pelatihan.store');
+Route::get('/pegawai/pelatihan/edit/{id}', [PelatihanController::class, 'edit'])->name('pegawai.pelatihan.edit');
+Route::get('/pegawai/pelatihan/show/{id}', [PelatihanController::class, 'show'])->name('pegawai.pelatihan.show');
+Route::put('/pegawai/pelatihan/update/{id}', [PelatihanController::class, 'update'])->name('pegawai.pelatihan.update');
+Route::delete('/pegawai/pelatihan/delete/{id}', [PelatihanController::class, 'destroy'])->name('pegawai.pelatihan.destroy');
 

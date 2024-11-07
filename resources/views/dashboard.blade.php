@@ -1058,7 +1058,7 @@
             </div>
         </div>
 
-        <div class="col-md-4 grid-margin">
+        {{-- <div class="col-md-4 grid-margin">
             <div class="card position-relative">
                 <div class="card-body">
                     <div id="detailedReports" class="carousel slide detailed-report-carousel position-static pt-2"
@@ -1074,13 +1074,124 @@
                     </div>
                 </div>
             </div>
+        </div> --}}
+
+        <div class="row">
+            <div class="col-lg-6 grid-margin grid-margin-lg-0 stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Pegawai Berdasarkan Jenis Kelamin</h4>
+                        <canvas id="genderPieChart" width="250" height="250"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6 grid-margin grid-margin-lg-0 stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Pegawai Berdasarkan Pendidikan Terakhir</h4>
+                        <canvas id="educationPieChart" width="250" height="250"></canvas>
+                    </div>
+                </div>
+            </div>
         </div>
-
-      
-
     </div>
-@endsection
 
-@section('scripts')
+    {{-- Chart For Gender --}}
+    <script>
+        const ctx = document.getElementById('genderPieChart').getContext('2d');
+        const data = {
+            labels: ['Laki-laki', 'Perempuan'],
+            datasets: [{
+                label: 'Jumlah Pegawai',
+                data: [{{ $laki2 }}, {{ $perempuan }}],
+                backgroundColor: [
+                    'rgba(54, 162, 235, 0.5)',
+                    'rgba(255, 99, 132, 0.5)'
+                ],
+                borderColor: [
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 99, 132, 1)'
+                ],
+                borderWidth: 1
+            }]
+        };
 
+        const config = {
+            type: 'pie',
+            data: data,
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top',
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                let label = context.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                label += context.raw;
+                                return label;
+                            }
+                        }
+                    }
+                }
+            }
+        };
+
+        new Chart(ctx, config);
+    </script>
+
+    {{-- Chart For Education --}}
+    <script>
+        const ctx = document.getElementById('educationPieChart').getContext('2d');
+        const data = {
+            labels: ['Laki-laki', 'Perempuan'],
+            datasets: [{
+                label: 'Jumlah Pegawai',
+                data: [{{ $laki2 }}, {{ $perempuan }}],
+                backgroundColor: [
+                    'rgba(54, 162, 235, 0.5)',
+                    'rgba(255, 99, 132, 0.5)'
+                ],
+                borderColor: [
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 99, 132, 1)'
+                ],
+                borderWidth: 1
+            }]
+        };
+
+        const config = {
+            type: 'pie',
+            data: data,
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top',
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                let label = context.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                label += context.raw;
+                                return label;
+                            }
+                        }
+                    }
+                }
+            }
+        };
+
+        new Chart(ctx, config);
+    </script>
 @endsection
